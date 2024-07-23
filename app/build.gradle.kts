@@ -4,6 +4,7 @@ plugins {
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id("kotlin-parcelize")
+    id("io.gitlab.arturbosch.detekt")
 }
 
 android {
@@ -18,10 +19,12 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
         jvmTarget = "17"
     }
@@ -29,6 +32,12 @@ android {
 
 kapt {
     correctErrorTypes = true
+}
+
+detekt {
+    toolVersion = "1.23.6"
+    config = files("config/detekt/detekt.yml")
+    buildUponDefaultConfig = true
 }
 
 dependencies {
