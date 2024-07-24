@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="8dp"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nameCompanyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/logoImage"
+        app:layout_constraintStart_toStartOf="@+id/logoImage"
+        app:layout_constraintTop_toBottomOf="@+id/logoImage"
+        tools:text="Bitcoin" />
+
+    <TextView
+        android:id="@+id/symbolText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/nameCompanyText"
+        app:layout_constraintStart_toStartOf="@+id/nameCompanyText"
+        app:layout_constraintTop_toBottomOf="@+id/nameCompanyText"
+        tools:text="BTC" />
+
+    <TextView
+        android:id="@+id/priceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/symbolText"
+        app:layout_constraintStart_toStartOf="@+id/symbolText"
+        app:layout_constraintTop_toBottomOf="@+id/symbolText"
+        tools:text="64956" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/priceText">
+
+        <TextView
+            android:id="@+id/priceChangeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:textSize="12dp"
+            tools:text="63.98" />
+
+        <TextView
+            android:id="@+id/priceChangePercentageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            tools:text="0.71662" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.constraintlayout.widget.ConstraintLayout>
