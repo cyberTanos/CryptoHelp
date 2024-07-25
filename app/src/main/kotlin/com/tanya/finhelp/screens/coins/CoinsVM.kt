@@ -1,6 +1,5 @@
 package com.tanya.finhelp.screens.coins
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,15 +21,20 @@ class CoinsVM @Inject constructor(
     private val _state = MutableLiveData<List<BaseRecyclerItem>>()
     val state: LiveData<List<BaseRecyclerItem>> = _state
 
+    private val _errorState = MutableLiveData<Boolean>()
+    val errorState: LiveData<Boolean> = _errorState
+
     fun getCoins() {
         viewModelScope.launch {
             runCatching {
+                _errorState.value = false
                 _state.value = getSkeletons()
+                delay(1500)
                 api.getCoins()
             }.onSuccess { coins ->
                 _state.value = coins.toDomain()
-            }.onFailure { error ->
-                Log.d("TAG", "____________$error")
+            }.onFailure {
+                _errorState.value = true
             }
         }
     }

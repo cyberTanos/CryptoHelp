@@ -13,8 +13,15 @@ data class Coin(
     val image: String,
     val price: String,
     val rank: String,
-    val priceChange: String,
-    val priceChangePercentage: String
-) : Parcelable, BaseRecyclerItem
+    val priceChange: Value,
+    val priceChangePercentage: Value
+) : Parcelable, BaseRecyclerItem {
+
+    @Parcelize
+    class Value(
+        val value: String,
+        val color: Int
+    ): Parcelable
+}
 
 class SkeletonCoin : BaseRecyclerItem

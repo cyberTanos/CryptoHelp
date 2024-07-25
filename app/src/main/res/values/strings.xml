@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FinHelp</string>
+    <string name="error_no_internet">Нет интернет соединения</string>
+    <string name="error_restart_button">Перезагрузить</string>
 </resources>
