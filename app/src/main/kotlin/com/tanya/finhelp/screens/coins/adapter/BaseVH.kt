@@ -12,7 +12,6 @@ import com.tanya.finhelp.databinding.ItemSkeletonCoinBinding
 import com.tanya.finhelp.domain.BaseRecyclerItem
 import com.tanya.finhelp.domain.Coin
 
-
 abstract class BaseVH(binding: ViewBinding) : ViewHolder(binding.root) {
     abstract fun bind(baseRecyclerItem: BaseRecyclerItem)
 }
@@ -21,12 +20,14 @@ class CoinVH(private val binding: ItemCoinBinding, private var onClick: (Coin) -
 
     override fun bind(baseRecyclerItem: BaseRecyclerItem) = with(binding) {
         if (baseRecyclerItem is Coin) {
-            Glide.with(root).load(baseRecyclerItem.image).into(logoImage)
+            Glide.with(root).load(baseRecyclerItem.image).circleCrop().into(logoImage)
             symbolText.text = baseRecyclerItem.symbol
             nameCompanyText.text = baseRecyclerItem.name
             priceText.text = baseRecyclerItem.price
-            priceChangeText.text = baseRecyclerItem.priceChange
-            priceChangePercentageText.text = baseRecyclerItem.priceChangePercentage
+            priceChangeText.setTextColor(baseRecyclerItem.priceChange.color)
+            priceChangeText.text = baseRecyclerItem.priceChange.value
+            priceChangePercentageText.setTextColor(baseRecyclerItem.priceChangePercentage.color)
+            priceChangePercentageText.text = baseRecyclerItem.priceChangePercentage.value
             root.setOnClickListener {
                 onClick.invoke(baseRecyclerItem)
             }

@@ -32,12 +32,14 @@ class CoinInfoBottomSheet : BottomSheetDialogFragment(R.layout.bottom_sheet_coin
 
     private fun bindUI() = with(binding) {
         arguments?.getParcelable<Coin>(COIN_KEY).let { coin ->
-            Glide.with(root).load(coin?.image).into(logoImage)
+            Glide.with(root).load(coin?.image).circleCrop().into(logoImage)
             symbolText.text = coin?.symbol
             nameCompanyText.text = coin?.name
             priceText.text = coin?.price
-            priceChangeText.text = coin?.priceChange
-            priceChangePercentageText.text = coin?.priceChangePercentage
+            coin?.priceChange?.let { priceChangeText.setTextColor(it.color) }
+            priceChangeText.text = coin?.priceChange?.value
+            coin?.priceChangePercentage?.let { priceChangePercentageText.setTextColor(it.color) }
+            priceChangePercentageText.text = coin?.priceChangePercentage?.value
         }
     }
 

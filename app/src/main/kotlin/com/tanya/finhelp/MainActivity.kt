@@ -1,7 +1,6 @@
 package com.tanya.finhelp
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.tanya.finhelp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.tanya.finhelp.R
@@ -33,18 +34,27 @@ class CoinsFragment : Fragment(R.layout.fragment_coins) {
         bindUI()
         observeVM()
 
+        vm.getCoins()
+
         return binding.root
     }
 
     private fun bindUI() {
         binding.recycler.adapter = adapter
+        binding.errorLayout.restartButton.setOnClickListener {
+            vm.getCoins()
+        }
     }
 
     private fun observeVM() {
         vm.state.observe(viewLifecycleOwner) { coins ->
             adapter.submitList(coins)
         }
-        vm.getCoins()
+
+        vm.errorState.observe(viewLifecycleOwner) { isError ->
+            if (isError) adapter.submitList(emptyList())
+            binding.errorLayout.root.isVisible = isError
+        }
     }
 
     private fun navigateToCoinInfo(coin: Coin) {
