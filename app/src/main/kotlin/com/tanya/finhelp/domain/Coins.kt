@@ -3,6 +3,8 @@ package com.tanya.finhelp.domain
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
+interface BaseRecyclerItem
+
 @Parcelize
 data class Coin(
     val id: String,
@@ -13,4 +15,6 @@ data class Coin(
     val rank: String,
     val priceChange: String,
     val priceChangePercentage: String
-): Parcelable
+) : Parcelable, BaseRecyclerItem
+
+class SkeletonCoin : BaseRecyclerItem

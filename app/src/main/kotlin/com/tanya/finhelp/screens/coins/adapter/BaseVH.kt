@@ -1,0 +1,58 @@
+package com.tanya.finhelp.screens.coins.adapter
+
+import android.animation.ArgbEvaluator
+import android.animation.ValueAnimator
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import androidx.viewbinding.ViewBinding
+import com.bumptech.glide.Glide
+import com.tanya.finhelp.R
+import com.tanya.finhelp.databinding.ItemCoinBinding
+import com.tanya.finhelp.databinding.ItemSkeletonCoinBinding
+import com.tanya.finhelp.domain.BaseRecyclerItem
+import com.tanya.finhelp.domain.Coin
+
+
+abstract class BaseVH(binding: ViewBinding) : ViewHolder(binding.root) {
+    abstract fun bind(baseRecyclerItem: BaseRecyclerItem)
+}
+
+class CoinVH(private val binding: ItemCoinBinding, private var onClick: (Coin) -> Unit) : BaseVH(binding) {
+
+    override fun bind(baseRecyclerItem: BaseRecyclerItem) = with(binding) {
+        if (baseRecyclerItem is Coin) {
+            Glide.with(root).load(baseRecyclerItem.image).into(logoImage)
+            symbolText.text = baseRecyclerItem.symbol
+            nameCompanyText.text = baseRecyclerItem.name
+            priceText.text = baseRecyclerItem.price
+            priceChangeText.text = baseRecyclerItem.priceChange
+            priceChangePercentageText.text = baseRecyclerItem.priceChangePercentage
+            root.setOnClickListener {
+                onClick.invoke(baseRecyclerItem)
+            }
+        }
+    }
+}
+
+class SkeletonVH(private val binding: ItemSkeletonCoinBinding) : BaseVH(binding) {
+
+    override fun bind(baseRecyclerItem: BaseRecyclerItem) {
+        val colorFrom: Int = ContextCompat.getColor(binding.root.context, R.color.gray)
+        val colorTo: Int = ContextCompat.getColor(binding.root.context, R.color.gray_light)
+        val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), colorFrom, colorTo)
+        colorAnimation.setDuration(1000)
+        colorAnimation.addUpdateListener { animator ->
+            with(binding) {
+                logoImage.setBackgroundColor(animator.animatedValue as Int)
+                skelSymbolText.setBackgroundColor(animator.animatedValue as Int)
+                skelNameCompanyText.setBackgroundColor(animator.animatedValue as Int)
+                skelPrice.setBackgroundColor(animator.animatedValue as Int)
+                skelPriceChangeText.setBackgroundColor(animator.animatedValue as Int)
+                skelPriceChangePercentageText.setBackgroundColor(animator.animatedValue as Int)
+            }
+        }
+        colorAnimation.repeatCount = 10
+        colorAnimation.repeatMode = ValueAnimator.REVERSE
+        colorAnimation.start()
+    }
+}
