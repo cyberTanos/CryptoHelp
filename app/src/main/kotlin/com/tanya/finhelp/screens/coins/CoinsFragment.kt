@@ -11,6 +11,7 @@ import com.tanya.finhelp.R
 import com.tanya.finhelp.databinding.FragmentCoinsBinding
 import com.tanya.finhelp.domain.Coin
 import com.tanya.finhelp.screens.coinInfo.CoinInfoBottomSheet
+import com.tanya.finhelp.screens.coins.adapter.CoinsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG_COIN_INFO_BOTTOM_SHEET = "TAG_COIN_INFO_BOTTOM_SHEET"
