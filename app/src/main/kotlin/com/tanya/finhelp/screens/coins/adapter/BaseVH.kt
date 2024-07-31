@@ -12,6 +12,9 @@ import com.tanya.finhelp.databinding.ItemSkeletonCoinBinding
 import com.tanya.finhelp.domain.BaseRecyclerItem
 import com.tanya.finhelp.domain.Coin
 
+private const val ANIMATION_DURATION = 1000L
+private const val ANIMATION_REPEAT = 10
+
 abstract class BaseVH(binding: ViewBinding) : ViewHolder(binding.root) {
     abstract fun bind(baseRecyclerItem: BaseRecyclerItem)
 }
@@ -41,7 +44,7 @@ class SkeletonVH(private val binding: ItemSkeletonCoinBinding) : BaseVH(binding)
         val colorFrom: Int = ContextCompat.getColor(binding.root.context, R.color.gray)
         val colorTo: Int = ContextCompat.getColor(binding.root.context, R.color.gray_light)
         val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), colorFrom, colorTo)
-        colorAnimation.setDuration(1000)
+        colorAnimation.setDuration(ANIMATION_DURATION)
         colorAnimation.addUpdateListener { animator ->
             with(binding) {
                 logoImage.setBackgroundColor(animator.animatedValue as Int)
@@ -52,7 +55,7 @@ class SkeletonVH(private val binding: ItemSkeletonCoinBinding) : BaseVH(binding)
                 skelPriceChangePercentageText.setBackgroundColor(animator.animatedValue as Int)
             }
         }
-        colorAnimation.repeatCount = 10
+        colorAnimation.repeatCount = ANIMATION_REPEAT
         colorAnimation.repeatMode = ValueAnimator.REVERSE
         colorAnimation.start()
     }

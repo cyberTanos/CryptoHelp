@@ -1,8 +1,10 @@
 package com.tanya.finhelp.domain
 
 import android.graphics.Color
+import com.tanya.finhelp.data.response.CoinInfoResponse
 import com.tanya.finhelp.data.response.CoinResponse
 import com.tanya.finhelp.domain.Coin.Value
+import com.tanya.finhelp.util.LABEL_COUNT_GRAPH
 import com.tanya.finhelp.util.orZero
 
 fun List<CoinResponse>.toDomain(): List<Coin> {
@@ -15,15 +17,33 @@ fun List<CoinResponse>.toDomain(): List<Coin> {
             price = it.price.orZero().toString(),
             rank = it.rank.orZero().toString(),
             priceChange = getValue(it.priceChange.orZero()),
-            priceChangePercentage = getValue(it.priceChangePercentage.orZero())
+            priceChangePercentage = getValuePercentage(it.priceChangePercentage.orZero())
         )
     }
 }
 
 private fun getValue(value: Float): Value {
+    val price = if (value > 0) "+$value" else value
     val color = if (value < 0) Color.RED else Color.GREEN
     return Value(
-        value = value.toString(),
+        value = price.toString(),
         color = color
     )
+}
+
+private fun getValuePercentage(value: Float): Value {
+    val color = if (value < 0) Color.RED else Color.GREEN
+    return Value(
+        value = "$value%",
+        color = color
+    )
+}
+
+fun CoinInfoResponse.toDomain(): List<CoinInfo> {
+    return this.prices?.map {
+        CoinInfo(
+            date = 0.0,
+            price = it?.get(1) ?: 0.0
+        )
+    }.orEmpty().takeLast(LABEL_COUNT_GRAPH)
 }
