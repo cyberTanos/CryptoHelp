@@ -10,7 +10,6 @@ import com.tanya.finhelp.domain.toDomain
 import com.tanya.finhelp.util.getSkeletons
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @HiltViewModel
@@ -29,7 +28,6 @@ class CoinsVM @Inject constructor(
             runCatching {
                 _errorState.value = false
                 _state.value = getSkeletons()
-                delay(1500)
                 api.getCoins()
             }.onSuccess { coins ->
                 _state.value = coins.toDomain()

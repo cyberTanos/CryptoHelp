@@ -18,8 +18,14 @@ class CoinsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseVH {
         return when (viewType) {
-            COIN_VH -> CoinVH(ItemCoinBinding.inflate(LayoutInflater.from(parent.context), parent, false), onClick)
-            SKELETON_COIN_VH -> SkeletonVH(ItemSkeletonCoinBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            COIN_VH -> CoinVH(
+                ItemCoinBinding.inflate(LayoutInflater.from(parent.context), parent, false), onClick
+            )
+
+            SKELETON_COIN_VH -> SkeletonVH(
+                ItemSkeletonCoinBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            )
+
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
