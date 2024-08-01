@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "40129991312",
+    "firebase_url": "https://finhelp-d0b03-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "finhelp-d0b03",
+    "storage_bucket": "finhelp-d0b03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:40129991312:android:03384ffa9da11aa9363e15",
+        "android_client_info": {
+          "package_name": "com.tanya.finhelp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7vyx1U40iY_FRB-lItYUIwqTYiYKiWnA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

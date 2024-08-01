@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.mikephil.charting.data.Entry
 import com.tanya.finhelp.data.Api
 import com.tanya.finhelp.domain.CoinInfo
 import com.tanya.finhelp.domain.toDomain
@@ -28,7 +27,7 @@ class CoinInfoVM @Inject constructor(
             }.onSuccess {
                 _state.value = it.toDomain()
             }.onFailure {
-                Log.d("BOB", "getHistoryCoin: $it ")
+                Log.d("getHistoryCoin", "getHistoryCoin: $it ")
             }
         }
     }
