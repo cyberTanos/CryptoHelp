@@ -2,4 +2,13 @@
     <string name="app_name">FinHelp</string>
     <string name="error_no_internet">Нет интернет соединения</string>
     <string name="error_restart_button">Перезагрузить</string>
+    <string name="create_button">Создать</string>
+    <string name="login_button">Войти</string>
+    <string name="has_account_button">Есть аккаунт</string>
+    <string name="create_account_button">Создать аккаунт</string>
+    <string name="create_account">Создать аккаунт</string>
+    <string name="login_account">Войти в аккаунт</string>
+    <string name="email_hint">Email</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
 </resources>

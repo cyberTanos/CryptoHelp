@@ -3,7 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/coinsFragment">
+    app:startDestination="@id/authFragment">
+
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.tanya.finhelp.screens.auth.AuthFragment"
+        android:label="AuthFragment"
+        tools:layout="@layout/fragment_auth">
+        <action
+            android:id="@+id/to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/to_coinsFragment"
+            app:destination="@id/coinsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.tanya.finhelp.screens.registration.RegistrationFragment"
+        android:label="RegistrationFragment"
+        tools:layout="@layout/fragment_registration">
+        <action
+            android:id="@+id/to_authFragment"
+            app:destination="@id/authFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/coinsFragment"
@@ -16,4 +39,5 @@
         android:name="com.tanya.finhelp.screens.coinInfo.CoinInfoBottomSheet"
         android:label="CoinInfoBottomSheet"
         tools:layout="@layout/bottom_sheet_coin_info" />
+
 </navigation>
