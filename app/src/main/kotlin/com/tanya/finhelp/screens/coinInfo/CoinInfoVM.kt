@@ -5,16 +5,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tanya.finhelp.data.Api
 import com.tanya.finhelp.domain.CoinInfo
-import com.tanya.finhelp.domain.toDomain
+import com.tanya.finhelp.domain.CoinRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 
 @HiltViewModel
 class CoinInfoVM @Inject constructor(
-    private val api: Api
+    private val repository: CoinRepository
 ) : ViewModel() {
 
     private val _state = MutableLiveData<List<CoinInfo>>()
@@ -23,9 +22,9 @@ class CoinInfoVM @Inject constructor(
     fun getHistoryCoin(id: String) {
         viewModelScope.launch {
             runCatching {
-                api.getHistoryCoin(id)
+                repository.getHistoryCoin(id)
             }.onSuccess {
-                _state.value = it.toDomain()
+                _state.value = it
             }.onFailure {
                 Log.d("getHistoryCoin", "getHistoryCoin: $it ")
             }

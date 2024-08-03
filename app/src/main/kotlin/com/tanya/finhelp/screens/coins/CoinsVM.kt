@@ -4,9 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tanya.finhelp.data.Api
 import com.tanya.finhelp.domain.BaseRecyclerItem
-import com.tanya.finhelp.domain.toDomain
+import com.tanya.finhelp.domain.CoinRepository
 import com.tanya.finhelp.util.getSkeletons
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -14,7 +13,7 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class CoinsVM @Inject constructor(
-    private val api: Api
+    private val repository: CoinRepository
 ) : ViewModel() {
 
     private val _state = MutableLiveData<List<BaseRecyclerItem>>()
@@ -28,9 +27,9 @@ class CoinsVM @Inject constructor(
             runCatching {
                 _errorState.value = false
                 _state.value = getSkeletons()
-                api.getCoins()
+                repository.getCoins()
             }.onSuccess { coins ->
-                _state.value = coins.toDomain()
+                _state.value = coins
             }.onFailure {
                 _errorState.value = true
             }
