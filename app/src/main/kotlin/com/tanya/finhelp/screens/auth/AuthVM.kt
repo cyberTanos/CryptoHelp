@@ -3,13 +3,15 @@ package com.tanya.finhelp.screens.auth
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.firebase.auth.FirebaseAuth
+import androidx.lifecycle.viewModelScope
+import com.tanya.finhelp.domain.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class AuthVM @Inject constructor(
-    private val firebaseAuth: FirebaseAuth
+    private val repository: AuthRepository
 ) : ViewModel() {
 
     private val _isLogIn = MutableLiveData<Boolean>()
@@ -19,17 +21,21 @@ class AuthVM @Inject constructor(
     val error: LiveData<String> = _error
 
     fun logIn(email: String, password: String) {
-        _error.value = ""
+        viewModelScope.launch {
+            _error.value = ""
 
-        if (email.isBlank() || password.isBlank()) {
-            _error.value = "Пустые поля"
-            return
-        }
+            if (email.isBlank() || password.isBlank()) {
+                _error.value = "Пустые поля"
+                return@launch
+            }
 
-        firebaseAuth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
-            _isLogIn.value = true
-        }.addOnFailureListener { error ->
-            _error.value = error.message
+            runCatching {
+                repository.logIn(email, password)
+            }.onSuccess {
+                _isLogIn.value = true
+            }.onFailure { error ->
+                _error.value = error.message
+            }
         }
     }
 }

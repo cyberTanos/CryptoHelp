@@ -15,7 +15,9 @@
             app:destination="@id/registrationFragment" />
         <action
             android:id="@+id/to_coinsFragment"
-            app:destination="@id/coinsFragment" />
+            app:destination="@id/coinsFragment"
+            app:popUpTo="@id/authFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -25,7 +27,9 @@
         tools:layout="@layout/fragment_registration">
         <action
             android:id="@+id/to_authFragment"
-            app:destination="@id/authFragment" />
+            app:destination="@id/authFragment"
+            app:popUpTo="@id/authFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
