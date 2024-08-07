@@ -5,18 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.tanya.finhelp.R
 import com.tanya.finhelp.databinding.FragmentCoinsBinding
-import com.tanya.finhelp.domain.Coin
+import com.tanya.finhelp.domain.model.Coin
 import com.tanya.finhelp.screens.coinInfo.CoinInfoBottomSheet
 import com.tanya.finhelp.screens.coins.adapter.CoinsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
-private const val TAG_COIN_INFO_BOTTOM_SHEET = "TAG_COIN_INFO_BOTTOM_SHEET"
 const val COIN_KEY = "Coin"
+private const val TAG_COIN_INFO_BOTTOM_SHEET = "TAG_COIN_INFO_BOTTOM_SHEET"
+private const val MENU_INDEX = 0
 
 @AndroidEntryPoint
 class CoinsFragment : Fragment(R.layout.fragment_coins) {
@@ -43,6 +46,12 @@ class CoinsFragment : Fragment(R.layout.fragment_coins) {
         binding.recycler.adapter = adapter
         binding.errorLayout.restartButton.setOnClickListener {
             vm.getCoins()
+        }
+        binding.usernameText.text = vm.getUsername()
+        binding.toolbar.menu[MENU_INDEX].setOnMenuItemClickListener {
+            vm.deleteUsername()
+            findNavController().navigate(R.id.action_coinsFragment_to_authFragment)
+            true
         }
     }
 

@@ -1,9 +1,11 @@
-package com.tanya.finhelp.domain
+package com.tanya.finhelp.domain.mapper
 
 import android.graphics.Color
 import com.tanya.finhelp.data.response.CoinInfoResponse
 import com.tanya.finhelp.data.response.CoinResponse
-import com.tanya.finhelp.domain.Coin.Value
+import com.tanya.finhelp.domain.model.Coin
+import com.tanya.finhelp.domain.model.Coin.Value
+import com.tanya.finhelp.domain.model.CoinInfo
 import com.tanya.finhelp.util.LABEL_COUNT_GRAPH
 import com.tanya.finhelp.util.orZero
 

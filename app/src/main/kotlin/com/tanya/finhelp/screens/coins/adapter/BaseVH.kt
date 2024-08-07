@@ -9,8 +9,8 @@ import com.bumptech.glide.Glide
 import com.tanya.finhelp.R
 import com.tanya.finhelp.databinding.ItemCoinBinding
 import com.tanya.finhelp.databinding.ItemSkeletonCoinBinding
-import com.tanya.finhelp.domain.BaseRecyclerItem
-import com.tanya.finhelp.domain.Coin
+import com.tanya.finhelp.domain.model.BaseRecyclerItem
+import com.tanya.finhelp.domain.model.Coin
 
 private const val ANIMATION_DURATION = 1000L
 private const val ANIMATION_REPEAT = 10

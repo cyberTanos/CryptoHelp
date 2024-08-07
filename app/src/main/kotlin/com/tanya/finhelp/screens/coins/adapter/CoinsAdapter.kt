@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.tanya.finhelp.databinding.ItemCoinBinding
 import com.tanya.finhelp.databinding.ItemSkeletonCoinBinding
-import com.tanya.finhelp.domain.BaseRecyclerItem
-import com.tanya.finhelp.domain.Coin
+import com.tanya.finhelp.domain.model.BaseRecyclerItem
+import com.tanya.finhelp.domain.model.Coin
 
 private const val COIN_VH = 0
 private const val SKELETON_COIN_VH = 1

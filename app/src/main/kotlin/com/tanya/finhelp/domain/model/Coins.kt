@@ -1,4 +1,4 @@
-package com.tanya.finhelp.domain
+package com.tanya.finhelp.domain.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

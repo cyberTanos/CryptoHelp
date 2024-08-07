@@ -28,6 +28,10 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
     }
 
     private fun bindUI() {
+        if (vm.isUserExist()) {
+            findNavController().navigate(R.id.to_coinsFragment)
+        }
+
         binding.logInButton.setOnClickListener {
             vm.logIn(
                 email = binding.emailEdit.text.toString(),

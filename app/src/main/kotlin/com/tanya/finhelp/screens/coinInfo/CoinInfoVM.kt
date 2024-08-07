@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tanya.finhelp.domain.CoinInfo
+import com.tanya.finhelp.domain.model.CoinInfo
 import com.tanya.finhelp.domain.CoinRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

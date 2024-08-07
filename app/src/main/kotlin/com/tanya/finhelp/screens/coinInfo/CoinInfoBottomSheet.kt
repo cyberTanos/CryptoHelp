@@ -20,7 +20,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.tanya.finhelp.R
 import com.tanya.finhelp.databinding.BottomSheetCoinInfoBinding
-import com.tanya.finhelp.domain.Coin
+import com.tanya.finhelp.domain.model.Coin
 import com.tanya.finhelp.screens.coins.COIN_KEY
 import com.tanya.finhelp.util.LABEL_COUNT_GRAPH
 import dagger.hilt.android.AndroidEntryPoint
