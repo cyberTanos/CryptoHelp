@@ -1,6 +1,9 @@
 package com.tanya.finhelp.domain
 
 import com.tanya.finhelp.data.Api
+import com.tanya.finhelp.domain.mapper.toDomain
+import com.tanya.finhelp.domain.model.Coin
+import com.tanya.finhelp.domain.model.CoinInfo
 import javax.inject.Inject
 
 class CoinRepositoryImpl @Inject constructor(

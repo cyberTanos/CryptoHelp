@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tanya.finhelp.data.local.SharedPreference
 import com.tanya.finhelp.domain.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -11,7 +12,8 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class AuthVM @Inject constructor(
-    private val repository: AuthRepository
+    private val repository: AuthRepository,
+    private val sharedPref: SharedPreference
 ) : ViewModel() {
 
     private val _isLogIn = MutableLiveData<Boolean>()
@@ -37,5 +39,9 @@ class AuthVM @Inject constructor(
                 _error.value = error.message
             }
         }
+    }
+
+    fun isUserExist(): Boolean {
+        return sharedPref.getUsername().isNotEmpty()
     }
 }
